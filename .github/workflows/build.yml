@@ -8,7 +8,6 @@ jobs:
       - run: unzip -q DoomTouch2.zip
       - uses: actions/setup-java@v4
         with: { distribution: temurin, java-version: 17 }
-      - uses: android-actions/setup-android@v3
       - run: |
           sdkmanager "ndk;26.3.11579264" "platforms;android-34" "build-tools;34.0.0"
           sudo apt-get update && sudo apt-get install -y cmake ninja-build re2c nasm libsdl2-dev libgl1-mesa-dev
