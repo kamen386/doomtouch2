@@ -9,7 +9,9 @@ jobs:
       - uses: actions/setup-java@v4
         with: { distribution: temurin, java-version: 17 }
       - run: |
-          sdkmanager "ndk;26.3.11579264" "platforms;android-34" "build-tools;34.0.0"
+          SDKM=$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager
+          yes | $SDKM --licenses > /dev/null || true
+          $SDKM "ndk;26.3.11579264" "platforms;android-34" "build-tools;34.0.0"
           sudo apt-get update && sudo apt-get install -y cmake ninja-build re2c nasm libsdl2-dev libgl1-mesa-dev
           echo "ANDROID_NDK_HOME=$ANDROID_HOME/ndk/26.3.11579264" >> $GITHUB_ENV
       - shell: bash
